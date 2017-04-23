@@ -4,8 +4,10 @@ import {compose, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
 import App from './App';
+import {MainContainer} from './components/Main';
 import './index.css';
 
+// enable usage of Redux DevTools
 const createStoreDevTools = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
@@ -16,7 +18,7 @@ store.dispatch({
   type: 'SET_STATE',
   state: {
       hunger: [
-        {id: 1, type: 'body', status: 0},
+        {id: 1, type: 'body', status: 5},
         {id: 2, type: 'mind', status: 0},
         {id: 3, type: 'soul', status: 0},
     ],
@@ -26,7 +28,7 @@ store.dispatch({
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <MainContainer />
   </Provider>,
   document.getElementById('root')
 );
