@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Grid, Row, Col} from 'react-bootstrap';
 import Stats from './Stats';
+import Log from './Log';
+import Actions from './Actions';
 import Header from './Header';
 import * as actionCreators from '../action_creators';
 
@@ -8,17 +11,24 @@ export class Main extends React.Component {
     render() {
         console.log(this.props.hunger);
         return <div>
-            <Header />
-            <h1>HI</h1>
-            <ul>
-                <li>{this.props.hunger.get(0).get('type')}: {this.props.hunger.get(0).get('status')}</li>
-                <li>{this.props.hunger.get(1).get('type')}: {this.props.hunger.get(1).get('status')}</li>
-                <li>{this.props.hunger.get(2).get('type')}: {this.props.hunger.get(2).get('status')}</li>
-            </ul>
-            <Stats/>
-            <button onClick={() => this.props.incrementBody()}>BODY</button>
-            <button onClick={() => this.props.incrementBody()}>MIND</button>
-            <button onClick={() => this.props.incrementSoul()}>SOUL</button>
+            <Header/>
+            <Grid fluid>
+                <Row className="show-grid">
+                    <Col xs={6} md={4}>
+                        <Log />
+                    </Col>
+                    <Col xs={6} md={4}>
+                        <Actions incrementBody={this.props.incrementBody}
+                                 incrementMind={this.props.incrementMind}
+                                 incrementSoul={this.props.incrementSoul}/>
+                    </Col>
+                    <Col xs={6} md={4}>
+                        <Stats body={this.props.hunger.get(0).get('status')}
+                               mind={this.props.hunger.get(1).get('status')}
+                               soul={this.props.hunger.get(2).get('status')}/>
+                    </Col>
+                </Row>
+            </Grid>
         </div>
     }
 };

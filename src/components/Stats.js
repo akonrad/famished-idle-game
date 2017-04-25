@@ -10,8 +10,10 @@ export default class Stats extends React.Component {
     }
 
     render() {
-        return <div>
-            here is my stats container
-        </div>
+        return <ul>
+            <li>body: {this.props.body}</li>
+            <li>mind: {this.props.mind}</li>
+            <li>soul: {this.props.soul}</li>
+        </ul>
     }
 };
