@@ -35,7 +35,6 @@ export class Main extends React.Component {
 function mapStateToProps(state) {
     return {
         hunger: state.get('hunger'),
-        filter: state.get('filter'),
         log: state.get('log')
     };
 }
