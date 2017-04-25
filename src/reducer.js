@@ -26,6 +26,7 @@ function incrementSoul(state) {
 }
 
 // helper function
+// todo: limit logs stored in state to latest 40
 function _updateLogs(state, log) {
     return state.update('log', (current) => {return current.push(log)})
 }

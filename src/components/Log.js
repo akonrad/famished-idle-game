@@ -10,7 +10,7 @@ export default class Log extends React.Component {
     }
 
     render() {
-        var logs = this.props.log.reverse().map(function(log, index){
+        var logs = this.props.log.reverse().slice(0, 40).map(function(log, index){
                         return <li key={index}>{log}</li>;
                       })
         return <ul>{logs}</ul>
