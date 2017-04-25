@@ -9,13 +9,12 @@ import * as actionCreators from '../action_creators';
 
 export class Main extends React.Component {
     render() {
-        console.log(this.props.hunger);
         return <div>
             <Header/>
             <Grid fluid>
                 <Row className="show-grid">
                     <Col xs={6} md={4}>
-                        <Log />
+                        <Log log={this.props.log}/>
                     </Col>
                     <Col xs={6} md={4}>
                         <Actions incrementBody={this.props.incrementBody}
@@ -36,7 +35,8 @@ export class Main extends React.Component {
 function mapStateToProps(state) {
     return {
         hunger: state.get('hunger'),
-        filter: state.get('filter')
+        filter: state.get('filter'),
+        log: state.get('log')
     };
 }
 

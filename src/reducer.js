@@ -5,21 +5,29 @@ function setState(state, newState) {
 }
 
 function incrementBody(state) {
-    const newValue = state.get('hunger').get(0).get('status') + 1;
-    const updateValue = state.get('hunger').get(0).set('status', newValue);
-    return state.setIn(['hunger', 0], updateValue)
+    var newState = _updateLogs(state, "incremented body");
+    const newValue = newState.get('hunger').get(0).get('status') + 1;
+    const updateValue = newState.get('hunger').get(0).set('status', newValue);
+    return newState.setIn(['hunger', 0], updateValue)
 }
 
 function incrementMind(state) {
-    const newValue = state.get('hunger').get(1).get('status') + 1;
-    const updateValue = state.get('hunger').get(1).set('status', newValue);
-    return state.setIn(['hunger', 1], updateValue)
+    var newState = _updateLogs(state, "incremented mind");
+    const newValue = newState.get('hunger').get(1).get('status') + 1;
+    const updateValue = newState.get('hunger').get(1).set('status', newValue);
+    return newState.setIn(['hunger', 1], updateValue)
 }
 
 function incrementSoul(state) {
-    const newValue = state.get('hunger').get(2).get('status') + 1;
-    const updateValue = state.get('hunger').get(2).set('status', newValue);
-    return state.setIn(['hunger', 2], updateValue)
+    var newState = _updateLogs(state, "incremented soul");
+    const newValue = newState.get('hunger').get(2).get('status') + 1;
+    const updateValue = newState.get('hunger').get(2).set('status', newValue);
+    return newState.setIn(['hunger', 2], updateValue)
+}
+
+// helper function
+function _updateLogs(state, log) {
+    return state.update('log', (current) => {return current.push(log)})
 }
 
 export default function (state = Map(), action) {

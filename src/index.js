@@ -22,7 +22,8 @@ store.dispatch({
         {id: 2, type: 'mind', status: 0},
         {id: 3, type: 'soul', status: 0},
     ],
-    filter: 'all'
+    filter: 'all',
+    log: ['You are famished.']
   }
 })
 
