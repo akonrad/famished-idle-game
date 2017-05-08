@@ -20,9 +20,7 @@ export class Main extends React.Component {
                         <Actions incrementHunger={this.props.incrementHunger}/>
                     </Col>
                     <Col xs={6} md={4}>
-                        <Stats body={this.props.hunger.get(0).get('status')}
-                               mind={this.props.hunger.get(1).get('status')}
-                               soul={this.props.hunger.get(2).get('status')}/>
+                        <Stats hunger={this.props.hunger}/>
                     </Col>
                 </Row>
             </Grid>

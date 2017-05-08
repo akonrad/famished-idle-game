@@ -18,9 +18,9 @@ export default class Stats extends React.Component {
                 defaultExpanded={true}
                 bsStyle="primary">
                 <ul>
-                    <li>body: {this.props.body}</li>
-                    <li>mind: {this.props.mind}</li>
-                    <li>soul: {this.props.soul}</li>
+                    {this.props.hunger.map((kind, i) =>
+                        <li key={i}>{kind.get('kind')}: {kind.get('status')}</li>
+                    )}
                 </ul>
             </Panel>
         </div>
