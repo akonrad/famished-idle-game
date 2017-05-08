@@ -5,3 +5,10 @@ export function incrementHunger(kind, amount) {
     amount
   }
 }
+
+export function activateButton(name) {
+  return {
+    type: 'ACTIVATE_BUTTON',
+    name
+  }
+}

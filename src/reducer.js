@@ -12,6 +12,12 @@ function incrementHunger(state, kind, amount) {
     return newState.setIn(['hunger', index], updateValue)
 }
 
+function activateButton(state, name) {
+    const index = state.get('buttons').findIndex(i => i.get('name') === name)
+    const updateValue = state.get('buttons').get(index).set('active', true);
+    return state.setIn(['buttons', index], updateValue)
+}
+
 // helper function
 // todo: limit logs stored in state to latest 40
 function _updateLogs(state, log) {
@@ -24,6 +30,8 @@ export default function (state = Map(), action) {
             return setState(state, action.state);
         case 'INCREMENT_HUNGER':
             return incrementHunger(state, action.kind, action.amount);
+        case 'ACTIVATE_BUTTON':
+            return activateButton(state, action.name);
         default:
             return state;
     }
