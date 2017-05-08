@@ -17,9 +17,7 @@ export class Main extends React.Component {
                         <Log log={this.props.log}/>
                     </Col>
                     <Col xs={6} md={4}>
-                        <Actions incrementBody={this.props.incrementBody}
-                                 incrementMind={this.props.incrementMind}
-                                 incrementSoul={this.props.incrementSoul}/>
+                        <Actions incrementHunger={this.props.incrementHunger}/>
                     </Col>
                     <Col xs={6} md={4}>
                         <Stats body={this.props.hunger.get(0).get('status')}

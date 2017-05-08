@@ -4,25 +4,12 @@ function setState(state, newState) {
     return state.merge(newState);
 }
 
-function incrementBody(state) {
-    var newState = _updateLogs(state, "incremented body");
-    const newValue = newState.get('hunger').get(0).get('status') + 1;
-    const updateValue = newState.get('hunger').get(0).set('status', newValue);
-    return newState.setIn(['hunger', 0], updateValue)
-}
-
-function incrementMind(state) {
-    var newState = _updateLogs(state, "incremented mind");
-    const newValue = newState.get('hunger').get(1).get('status') + 1;
-    const updateValue = newState.get('hunger').get(1).set('status', newValue);
-    return newState.setIn(['hunger', 1], updateValue)
-}
-
-function incrementSoul(state) {
-    var newState = _updateLogs(state, "incremented soul");
-    const newValue = newState.get('hunger').get(2).get('status') + 1;
-    const updateValue = newState.get('hunger').get(2).set('status', newValue);
-    return newState.setIn(['hunger', 2], updateValue)
+function incrementHunger(state, kind, amount) {
+    var newState = _updateLogs(state, "incremented " + kind);
+    const index = newState.get('hunger').findIndex(i => i.get('kind') === kind)
+    const newValue = newState.get('hunger').get(index).get('status') + amount;
+    const updateValue = newState.get('hunger').get(index).set('status', newValue);
+    return newState.setIn(['hunger', index], updateValue)
 }
 
 // helper function
@@ -35,12 +22,8 @@ export default function (state = Map(), action) {
     switch (action.type) {
         case 'SET_STATE':
             return setState(state, action.state);
-        case 'INCREMENT_BODY':
-            return incrementBody(state);
-        case 'INCREMENT_MIND':
-            return incrementMind(state);
-        case 'INCREMENT_SOUL':
-            return incrementSoul(state);
+        case 'INCREMENT_HUNGER':
+            return incrementHunger(state, action.kind, action.amount);
         default:
             return state;
     }

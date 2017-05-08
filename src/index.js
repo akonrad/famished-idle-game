@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Immutable from 'immutable';
 import {compose, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
@@ -16,12 +17,12 @@ const store = createStoreDevTools(reducer);
 store.dispatch({
   type: 'SET_STATE',
   state: {
-      hunger: [
-        {id: 1, type: 'body', status: 5},
-        {id: 2, type: 'mind', status: 0},
-        {id: 3, type: 'soul', status: 0},
-    ],
-    log: ['You are famished.']
+      hunger: Immutable.fromJS([
+        {kind: 'body', status: 5},
+        {kind: 'mind', status: 0},
+        {kind: 'soul', status: 0},
+    ]),
+    log: Immutable.fromJS(['You are famished.'])
   }
 })
 
