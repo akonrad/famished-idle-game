@@ -17,7 +17,8 @@ export class Main extends React.Component {
                         <Log log={this.props.log}/>
                     </Col>
                     <Col xs={6} md={4}>
-                        <Actions incrementHunger={this.props.incrementHunger}/>
+                        <Actions buttons={this.props.buttons}
+                                 incrementHunger={this.props.incrementHunger}/>
                     </Col>
                     <Col xs={6} md={4}>
                         <Stats hunger={this.props.hunger}/>
@@ -31,6 +32,7 @@ export class Main extends React.Component {
 function mapStateToProps(state) {
     return {
         hunger: state.get('hunger'),
+        buttons: state.get('buttons'),
         log: state.get('log')
     };
 }

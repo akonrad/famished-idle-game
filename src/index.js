@@ -18,11 +18,16 @@ store.dispatch({
   type: 'SET_STATE',
   state: {
       hunger: fromJS([
-        {kind: 'body', status: 5},
+        {kind: 'body', status: -100},
         {kind: 'mind', status: 0},
         {kind: 'soul', status: 0},
-    ]),
-    log: fromJS(['You are famished.'])
+      ]),
+      buttons: fromJS([
+        {name: 'body', active: true},
+        {name: 'mind', active: false},
+        {name: 'soul', active: false}
+      ]),
+      log: fromJS(['You are famished.'])
   }
 })
 
