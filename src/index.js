@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {compose, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
-import App from './App';
 import {MainContainer} from './components/Main';
 import './index.css';
 
