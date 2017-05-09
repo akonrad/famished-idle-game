@@ -5,6 +5,7 @@ import Stats from './Stats';
 import Log from './Log';
 import Actions from './Actions';
 import Header from './Header';
+import SaveLoad from './SaveLoad';
 import * as actionCreators from '../action_creators';
 
 export class Main extends React.Component {
@@ -24,6 +25,10 @@ export class Main extends React.Component {
                         <Stats hunger={this.props.hunger}/>
                     </Col>
                 </Row>
+                <Row className="show-grid">
+                    <SaveLoad reduxState={this.props.reduxState}
+                              setState={this.props.setState}/>
+                </Row>
             </Grid>
         </div>
     }
@@ -33,7 +38,8 @@ function mapStateToProps(state) {
     return {
         hunger: state.get('hunger'),
         buttons: state.get('buttons'),
-        log: state.get('log')
+        log: state.get('log'),
+        reduxState: state
     };
 }
 
