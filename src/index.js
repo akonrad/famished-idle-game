@@ -22,7 +22,7 @@ store.dispatch({
   type: 'SET_STATE',
   state: {
       hunger: fromJS([
-        {kind: 'body', status: -100},
+        {kind: 'body', status: -30},
         {kind: 'mind', status: 0},
         {kind: 'soul', status: 0},
       ]),

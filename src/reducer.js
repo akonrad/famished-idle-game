@@ -1,7 +1,5 @@
 import {Map} from 'immutable';
-import {body} from './playlog/body'
-import {mind} from './playlog/mind'
-import {soul} from './playlog/soul'
+import {body, mind, soul} from './playlog/text'
 
 function setState(state, newState) {
     return state.merge(newState);
