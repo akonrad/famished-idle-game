@@ -1,11 +1,14 @@
 import {Map} from 'immutable';
+import {body} from './playlog/body'
+import {mind} from './playlog/mind'
+import {soul} from './playlog/soul'
 
 function setState(state, newState) {
     return state.merge(newState);
 }
 
 function incrementHunger(state, kind, amount) {
-    var newState = _updateLogs(state, "incremented " + kind);
+    var newState = _updateLogs(state, mapActionToLog(kind, amount));
     const index = newState.get('hunger').findIndex(i => i.get('kind') === kind)
     const newValue = newState.get('hunger').get(index).get('status') + amount;
     const updateValue = newState.get('hunger').get(index).set('status', newValue);
@@ -34,5 +37,18 @@ export default function (state = Map(), action) {
             return activateButton(state, action.name);
         default:
             return state;
+    }
+}
+
+function mapActionToLog(action, amount) {
+    switch(action) {
+        case 'body':
+            return body[amount-1]
+        case 'mind':
+            return mind[amount-1]
+        case 'soul':
+            return soul[amount-1]
+        default:
+            return '';
     }
 }

@@ -25,11 +25,11 @@ export default class Actions extends React.Component {
     mapActionToButton(action) {
         switch (action) {
             case 'body':
-                return () => this.props.incrementHunger('body', 5)
+                return () => this.props.incrementHunger('body', Math.floor(Math.random() * 5) + 1)
             case 'mind':
-                return () => this.props.incrementHunger('mind', 3)
+                return () => this.props.incrementHunger('mind', Math.floor(Math.random() * 5) + 1)
             case 'soul':
-                return () => this.props.incrementHunger('soul', 1)
+                return () => this.props.incrementHunger('soul', Math.floor(Math.random() * 5) + 1)
             default:
                 return
         }
