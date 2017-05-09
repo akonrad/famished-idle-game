@@ -31,7 +31,7 @@ export default class Actions extends React.Component {
             case 'soul':
                 return () => this.props.incrementHunger('soul', Math.floor(Math.random() * 5) + 1)
             case 'enlightenment':
-                return () => this.props.incrementHunger('enlightenment', 1)
+                return () => this.props.incrementHunger('enlightenment', NaN)
             default:
                 return
         }
