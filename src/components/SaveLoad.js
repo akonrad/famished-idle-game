@@ -1,6 +1,9 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {Navbar} from 'react-bootstrap';
+import encrypter from 'object-encrypter';
+
+const engine = encrypter('test secret', {algorithm: 'aes-256-ctr'});
 
 export default class SaveLoad extends React.Component {
     constructor(props) {
@@ -11,39 +14,19 @@ export default class SaveLoad extends React.Component {
     }
 
     render() {
-        var key = 'real secret keys should be long and random';
-
-// Create an encryptor:
-var encryptor = require('simple-encryptor')({key:key,hmac:false});
-var encrypted = encryptor.encrypt('testing');
-// Should print gibberish:
-console.log('encrypted: %s', encrypted);
-var decrypted = encryptor.decrypt(encrypted);
-// Should print 'testing'
-console.log('decrypted: %s', decrypted);
-// nested object:
-const obj = {
-  foo: {
-    bar: "x"
-  }
-};
-var objEnc = encryptor.encrypt(obj);
-// Should print gibberish:
-console.log('obj encrypted: %s', objEnc);
-var objDec = encryptor.decrypt(objEnc);
-// Should print: {"foo":{"bar":[1,"baz"]}}
-console.log('obj decrypted: %j', objDec);
-
         return <Navbar fixedBottom fluid>
             <Navbar.Collapse>
                 <Navbar.Text>
-                    <Navbar.Link onClick={() => alert(encryptor.encrypt(this.props.reduxState))}>
+                    <Navbar.Link onClick={() => prompt("Please copy this to load later on.", engine.encrypt(this.props.reduxState))}>
                         save
                     </Navbar.Link>
                 </Navbar.Text>
                 <Navbar.Text>
                     <Navbar.Link
-                        onClick={() => console.log('sigh')}>
+                        onClick={() => {
+                            const newState = prompt("Please paste in your save data.");
+                            this.props.setState(engine.decrypt(newState));
+                        }}>
                         load
                     </Navbar.Link>
                 </Navbar.Text>
