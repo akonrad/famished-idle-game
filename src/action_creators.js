@@ -12,3 +12,10 @@ export function activateButton(name) {
     name
   }
 }
+
+export function addDisabledButton(name) {
+  return {
+    type: 'ADD_DISABLED_BUTTON',
+    name
+  }
+}

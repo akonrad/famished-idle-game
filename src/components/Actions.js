@@ -11,6 +11,7 @@ export default class Actions extends React.Component {
     }
 
     render() {
+        console.log('rerendering actions')
         return <ButtonToolbar>
             {this.props.buttons.map((button, i) =>
                 <Button key={i}
@@ -30,6 +31,8 @@ export default class Actions extends React.Component {
                 return () => this.props.incrementHunger('mind', Math.floor(Math.random() * 5) + 1)
             case 'soul':
                 return () => this.props.incrementHunger('soul', Math.floor(Math.random() * 5) + 1)
+            case 'enlightenment':
+                return () => this.props.incrementHunger('enlightenment', 1)
             default:
                 return
         }

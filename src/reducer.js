@@ -1,4 +1,4 @@
-import {Map} from 'immutable';
+import {Map, fromJS} from 'immutable';
 import {body, mind, soul} from './playlog/text'
 
 function setState(state, newState) {
@@ -19,6 +19,16 @@ function activateButton(state, name) {
     return state.setIn(['buttons', index], updateValue)
 }
 
+function addDisabledButton(state, name) {
+    const index = state.get('buttons').findIndex(i => i.get('name') === name)
+    if (index !== -1) {
+        return state
+    }
+    var newState = _updateLogs(state, "You sense potential, just out of reach.");
+    newState = newState.update('hunger', hunger => hunger.push(fromJS({kind: name, status: 0})));
+    return newState.update('buttons', buttons => buttons.push(fromJS({name: name, active: false})));
+}
+
 // helper function
 // todo: limit logs stored in state to latest 40
 function _updateLogs(state, log) {
@@ -33,6 +43,8 @@ export default function (state = Map(), action) {
             return incrementHunger(state, action.kind, action.amount);
         case 'ACTIVATE_BUTTON':
             return activateButton(state, action.name);
+        case 'ADD_DISABLED_BUTTON':
+            return addDisabledButton(state, action.name);
         default:
             return state;
     }
@@ -46,6 +58,8 @@ function mapActionToLog(action, amount) {
             return mind[amount-1]
         case 'soul':
             return soul[amount-1]
+        case 'enlightenment':
+            return "At peace, you want for nothing."
         default:
             return '';
     }
