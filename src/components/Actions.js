@@ -2,6 +2,8 @@ import React from 'react';
 import {Button, ButtonToolbar} from 'react-bootstrap';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+const wellStyles = {maxWidth: 400, margin: '0 auto 10px'};
+
 export default class Actions extends React.Component {
     constructor(props) {
         super(props);
@@ -11,15 +13,15 @@ export default class Actions extends React.Component {
     }
 
     render() {
-        return <ButtonToolbar>
+        return <div className="well" style={wellStyles}>
             {this.props.buttons.map((button, i) =>
-                <Button key={i}
+                <Button key={i} bsSize="large" block bsStyle="primary"
                         onClick={this.mapActionToButton(button.get('name'))}
                         disabled={!button.get('active')}>
                         {button.get('name')}
                 </Button>
             )}
-        </ButtonToolbar>
+        </div>
     }
 
     mapActionToButton(action) {
