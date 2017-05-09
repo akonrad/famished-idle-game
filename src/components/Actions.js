@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, ButtonToolbar} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const wellStyles = {maxWidth: 400, margin: '0 auto 10px'};
