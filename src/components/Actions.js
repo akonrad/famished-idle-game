@@ -11,7 +11,6 @@ export default class Actions extends React.Component {
     }
 
     render() {
-        console.log('rerendering actions')
         return <ButtonToolbar>
             {this.props.buttons.map((button, i) =>
                 <Button key={i}

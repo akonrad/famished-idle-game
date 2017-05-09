@@ -13,6 +13,13 @@ export function activateButton(name) {
   }
 }
 
+export function disableButton(name) {
+  return {
+    type: 'DISABLE_BUTTON',
+    name
+  }
+}
+
 export function addDisabledButton(name) {
   return {
     type: 'ADD_DISABLED_BUTTON',

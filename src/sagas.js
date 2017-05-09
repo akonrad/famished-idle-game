@@ -16,8 +16,11 @@ function* activateButtons(action) {
   if (body > 100 && mind > 50 && soul > 50) {
       yield put({type: "ADD_DISABLED_BUTTON", name: 'enlightenment'});
   }
-  if (body > 100 && mind > 50 && soul > 75) {
+  if (body > 120 && mind > 60 && soul > 75) {
       yield put({type: "ACTIVATE_BUTTON", name: 'enlightenment'});
+      yield put({type: "DISABLE_BUTTON", name: 'body'});
+      yield put({type: "DISABLE_BUTTON", name: 'mind'});
+      yield put({type: "DISABLE_BUTTON", name: 'soul'});
   }
 }
 

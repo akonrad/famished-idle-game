@@ -19,6 +19,12 @@ function activateButton(state, name) {
     return state.setIn(['buttons', index], updateValue)
 }
 
+function disableButton(state, name) {
+    const index = state.get('buttons').findIndex(i => i.get('name') === name)
+    const updateValue = state.get('buttons').get(index).set('active', false);
+    return state.setIn(['buttons', index], updateValue)
+}
+
 function addDisabledButton(state, name) {
     const index = state.get('buttons').findIndex(i => i.get('name') === name)
     if (index !== -1) {
@@ -43,6 +49,8 @@ export default function (state = Map(), action) {
             return incrementHunger(state, action.kind, action.amount);
         case 'ACTIVATE_BUTTON':
             return activateButton(state, action.name);
+        case 'DISABLE_BUTTON':
+            return disableButton(state, action.name);
         case 'ADD_DISABLED_BUTTON':
             return addDisabledButton(state, action.name);
         default:
